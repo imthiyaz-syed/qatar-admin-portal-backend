@@ -1,0 +1,10 @@
+To: imthiyazsimthiyaz980@gmail.com
+Subject: Student invitation from Qatar Foundation Admin Portal
+
+Hello Imthiyaz Syed,
+
+You have been added as a student.
+Open your invitation link here:
+http://localhost:5000/invite/student/c22zRgIlZlQW3N0qvVQ7drC_25PZq-mrUVjzD46Wumw
+
+If you were not expecting this invitation, please contact the administrator.

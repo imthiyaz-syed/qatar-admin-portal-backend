@@ -1,0 +1,10 @@
+To: student1777606708@qf.edu.qa
+Subject: Student invitation from Qatar Foundation Admin Portal
+
+Hello Test Student,
+
+You have been added as a student.
+Open your invitation link here:
+http://localhost:5000/invite/student/XQFWblpn7-RC5I8zo4DZquYNVUvo-PwCmUdTeIVgKdE
+
+If you were not expecting this invitation, please contact the administrator.

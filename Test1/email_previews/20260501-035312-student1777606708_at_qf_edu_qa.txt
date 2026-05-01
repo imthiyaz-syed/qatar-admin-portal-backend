@@ -1,0 +1,17 @@
+To: student1777606708@qf.edu.qa
+Subject: New opportunity available: Toast 1777607592
+
+Hello Test Student,
+
+A training opportunity has been created for you.
+
+Title: Toast 1777607592
+Category: Technology
+Duration: 2 months
+Start date: 2026-06-25
+Description: Testing toast message
+Skills: Python
+Future opportunities: Growth
+
+Open the portal here:
+http://localhost:5000/admin.html

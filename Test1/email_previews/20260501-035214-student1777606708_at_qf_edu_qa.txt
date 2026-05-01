@@ -1,0 +1,17 @@
+To: student1777606708@qf.edu.qa
+Subject: Opportunity updated: Notif 1777607534 Updated
+
+Hello Test Student,
+
+A training opportunity has been updated for you.
+
+Title: Notif 1777607534 Updated
+Category: Technology
+Duration: 5 months
+Start date: 2026-06-20
+Description: Updated notification test
+Skills: Python,SQL,Flask
+Future opportunities: Growth+
+
+Open the portal here:
+http://localhost:5000/admin.html

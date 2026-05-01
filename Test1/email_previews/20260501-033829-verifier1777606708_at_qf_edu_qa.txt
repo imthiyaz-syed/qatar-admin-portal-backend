@@ -1,0 +1,10 @@
+To: verifier1777606708@qf.edu.qa
+Subject: Verifier invitation from Qatar Foundation Admin Portal
+
+Hello Test Verifier,
+
+You have been added as a verifier.
+Open your invitation link here:
+http://localhost:5000/invite/verifier/BOvkIEGA4yUmLDkYNfRobX2SNclHd1odNJbr3YuVl1A
+
+If you were not expecting this invitation, please contact the administrator.

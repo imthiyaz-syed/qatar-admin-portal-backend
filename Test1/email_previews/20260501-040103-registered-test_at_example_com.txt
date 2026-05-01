@@ -1,0 +1,4 @@
+To: registered-test@example.com
+Subject: SMTP Debug
+
+debug body
