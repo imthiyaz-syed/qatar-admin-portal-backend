@@ -1,203 +1,177 @@
-# 📘 CertifyMe — Full Stack Intern Assessment
+# Qatar Admin Portal — Backend (Flask)
+
+## Overview
+
+Backend implementation for the CertifyMe Full Stack Assessment.
+This project converts a static admin UI into a fully functional system by adding authentication, database persistence, and opportunity management.
 
 ---
 
-## 🚀 Getting Started
+## What I Built
 
-1. **Clone the provided repository**
-   ```bash
-   git clone https://github.com/Neerajvs32/Test1.git
-   ```
+### Authentication System
 
-2. **Create your own GitHub repository**
-   - Push the cloned project to your own GitHub account.
-   - Share your repository link after completing the task.
+* Admin Sign Up with validation (unique email, password rules)
+* Secure Login with session handling
+* “Remember Me” session persistence
+* Forgot Password with expiring reset link (1 hour)
 
-3. **Development Requirement**
-   - Both Frontend and Backend must run together.
-   - The UI must remain exactly the same.
-   - ❌ Do NOT modify frontend design or components.
-   - ✅ Build the backend required for the existing UI functionality.
+### Opportunity Management
 
----
+* Create, View, Edit, Delete opportunities
+* Each opportunity linked to logged-in admin
+* Data persists across sessions (database-driven)
+* No hardcoded data — fully dynamic
 
-## 🏢 Project Overview
+### Data Integrity & Security
 
-This project is part of the **CertifyMe Full Stack Intern Assessment**. The repository already contains a complete Admin UI. Your responsibility is to **build the backend and connect it with the existing frontend**.
-
-### Objectives
-- Build backend APIs using Flask
-- Connect frontend with backend
-- Store and retrieve data from database
-- Make the application fully functional
-
-### 🔗 Original Repository
-[https://github.com/Neerajvs32/Test1](https://github.com/Neerajvs32/Test1)
+* Admin-specific data isolation
+* Generic login error messages
+* Expiring password reset links
+* Server-side validation for all inputs
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Backend | Python |
-| Framework | Flask |
-| Database | SQLite / MySQL / PostgreSQL |
-| Frontend | Pre-built Admin UI |
-
----
-
-## 🧩 Features & User Stories
+| Layer     | Technology         |
+| --------- | ------------------ |
+| Backend   | Python             |
+| Framework | Flask              |
+| Database  | SQLite             |
+| Frontend  | Pre-built Admin UI |
 
 ---
 
-### ✅ Task 1 — Authentication *(Day 1)*
+## Project Structure
+
+```
+qatar-admin-portal-backend/
+│
+├── backend/
+│   ├── app.py
+│   ├── auth.py
+│   ├── database.py
+│   ├── opportunities.py
+│   ├── people.py
+│   └── notifications.py
+│
+├── sky/
+│   ├── admin.html
+│   ├── admin.css
+│   └── admin.js
+│
+├── requirements.txt
+├── .env.example
+└── README.md
+```
 
 ---
 
-#### US-1.1 — Admin Sign Up
+## System Flow
 
-**Required Fields**
-- Full Name
-- Email
-- Password
-- Confirm Password
-
-**Validations**
-- All fields mandatory
-- Email must be valid
-- Password minimum 8 characters
-- Passwords must match
-- Email must be unique
-
-**Expected Result**
-- Save admin account
-- Redirect to Login page
+```
+Admin (UI)
+   ↓
+Frontend (admin.html)
+   ↓
+API Requests
+   ↓
+Flask Backend
+   ↓
+Database (SQLite)
+   ↓
+Response → UI updates
+```
 
 ---
 
-#### US-1.2 — Admin Login
+## Setup Instructions
 
-**Fields**
-- Email
-- Password
-- Remember Me checkbox
+### 1. Clone Repository
 
-**Rules**
-- Show generic error on failure:
-  ```
-  Invalid email or password
-  ```
+```
+git clone https://github.com/imthiyaz-syed/qatar-admin-portal-backend.git
+cd qatar-admin-portal-backend
+```
 
-**Expected Result**
-- Redirect to dashboard
-- Load opportunities created by the admin
+### 2. Create Virtual Environment
 
-**Session Handling**
+```
+python -m venv venv
+venv\Scripts\activate   # Windows
+```
 
-| Condition | Behaviour |
-|---|---|
-| Remember Me checked | Long-lived session |
-| Remember Me unchecked | Session ends when browser closes |
+### 3. Install Dependencies
 
----
+```
+pip install -r requirements.txt
+```
 
-#### US-1.3 — Forgot Password
+### 4. Run Application
 
-**Requirements**
-- Admin enters their email
-- Always show the same success message (regardless of whether email exists)
-
-**Behaviour**
-- Generate reset link internally
-- No email sending required
-
-**Security**
-- Reset link expires after **1 hour**
-- Expired link shows an error
+```
+python backend/app.py
+```
 
 ---
 
-### ✅ Task 2 — Opportunity Management *(Day 2)*
+## API Endpoints (Core)
 
-> All opportunities must be stored in the database, linked to the logged-in admin, and must never use hardcoded data.
-
----
-
-#### US-2.1 — View All Opportunities
-
-**Each opportunity card must display:**
-- Opportunity Name
-- Category
-- Duration
-- Start Date
-- Description
-
-**Rules**
-- Show only the logged-in admin's opportunities
-- Remove all demo / hardcoded cards
-- Show an empty state if no opportunities exist
+| Method | Endpoint            | Description             |
+| ------ | ------------------- | ----------------------- |
+| POST   | /signup             | Create admin account    |
+| POST   | /login              | Authenticate admin      |
+| POST   | /forgot-password    | Generate reset link     |
+| GET    | /opportunities      | Fetch all opportunities |
+| POST   | /opportunities      | Create new opportunity  |
+| PUT    | /opportunities/<id> | Update opportunity      |
+| DELETE | /opportunities/<id> | Delete opportunity      |
 
 ---
 
-#### US-2.2 — Add New Opportunity
+## Key Design Decisions
 
-**Required Fields**
-- Opportunity Name
-- Duration
-- Start Date
-- Description
-- Skills to Gain *(comma separated)*
-- Category
-- Future Opportunities
-
-**Optional Field**
-- Maximum Applicants
-
-**Category Options**
-- Technology
-- Business
-- Design
-- Marketing
-- Data Science
-- Other
-
-**Expected Result**
-- Validate all required fields
-- Save opportunity to database
-- Link opportunity to logged-in admin
-- Display immediately **without page refresh**
+* Modular backend structure (auth, opportunities, database separation)
+* Database-driven state (no frontend storage)
+* Secure authentication flow with generic error handling
+* Immediate UI updates via API integration
 
 ---
 
-#### US-2.3 — Opportunities Persist After Login
+## Assumptions
 
-- Opportunities must load after logout / login cycles
-- Stored only in the database — **no local storage usage**
-- Admins cannot access other admins' data
-
----
-
-#### US-2.4 — View Opportunity Details
-
-- Open a details modal
-- Show all saved fields
-- Close button available
+* Email service not implemented (reset links logged internally)
+* UI remains unchanged as per requirement
+* SQLite used for simplicity
 
 ---
 
-#### US-2.5 — Edit Opportunity
+## Limitations
 
-- Edit button opens a pre-filled form
-- Apply the same validations as during creation
-- Update only the selected opportunity
-- Reflect changes instantly **without page refresh**
+* No JWT authentication (session-based only)
+* No production deployment setup
+* Minimal automated testing
 
 ---
 
-#### US-2.6 — Delete Opportunity
+## Future Improvements
 
-- Show a confirmation dialog before deletion
-- Delete permanently from the database
-- Remove from UI immediately **without page refresh**
-- Only the creator admin can delete their own opportunity
+* Add JWT-based authentication
+* Integrate email service for password reset
+* Replace SQLite with PostgreSQL
+* Add unit & integration tests
+* Dockerize application
+
+---
+
+## Outcome
+
+The backend successfully transforms the static UI into a dynamic, production-style system with:
+
+* Secure authentication
+* Persistent data storage
+* Full CRUD functionality
+* Clean modular architecture
+
+---
